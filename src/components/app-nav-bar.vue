@@ -4,7 +4,7 @@
       <li v-for="item in items" :key="item.id">
         <nuxt-link :to="item.url">
           <img v-if="item.icon" :src="item.icon" width="20" height="20">
-          <app-text tag-name="span" :styles="['link-text']" v-if="item.name">{{ item.name }}</app-text>
+          <app-text tag-name="span" :styles="['app-text']" v-if="item.name">{{ item.name }}</app-text>
         </nuxt-link>
       </li>
     </ul>
@@ -29,10 +29,6 @@ export default {
 </script>
 
 <style scoped>
-.link-text {
-	color: var(--colorSecondary);
-}
-
 .navbar {
 	align-items: center;
 	display: flex;

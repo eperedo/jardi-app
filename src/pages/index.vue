@@ -1,12 +1,14 @@
 <template>
   <section class="wrapper">
     <app-nav-bar :items="items"/>
+    <inline-dates :active-date="today" @active-date="activeDate"/>
   </section>
 </template>
 
 <script>
 import appNavBar from '@/components/app-nav-bar.vue';
 import appText from '@/components/app-text.vue';
+import inlineDates from '@/components/inline-dates.vue';
 
 function data() {
 	return {
@@ -30,7 +32,12 @@ function data() {
 				name: '',
 			},
 		],
+		today: new Date(),
 	};
+}
+
+function activeDate({ date }) {
+	this.today = new Date(date);
 }
 
 export default {
@@ -38,8 +45,12 @@ export default {
 	components: {
 		appNavBar,
 		appText,
+		inlineDates,
 	},
 	data,
+	methods: {
+		activeDate,
+	},
 };
 </script>
 
