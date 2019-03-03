@@ -36,6 +36,6 @@ export default {
 }
 
 .navbar-wrapper {
-	padding: var(--largePadding);
+	padding: var(--largeSpacing);
 }
 </style>
