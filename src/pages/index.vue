@@ -23,23 +23,24 @@ function data() {
 				id: 1,
 				icon: '/ham.svg',
 				name: '',
-				url: '/admin/dashboard',
+				url: '/',
 			},
 			{
 				alt: 'Transactions',
 				id: 2,
 				icon: '',
-				url: '/admin/dashboard',
+				url: '/',
 				name: 'Transactions',
 			},
 			{
 				alt: 'Search',
 				id: 3,
 				icon: '/search.svg',
-				url: '/admin/search',
+				url: '/search',
 				name: '',
 			},
 		],
+		search: this.$route.query.search,
 		today: new Date(),
 	};
 }
@@ -60,22 +61,33 @@ export default {
 	name: 'pages-home',
 	apollo: {
 		transactions: {
-			query: gql`
-				query getTransactions($startDate: String!, $endDate: String!) {
-					transactions(startDate: $startDate, endDate: $endDate) {
-						amount
-						currency
-						description
-						id
-						registerDate
-						title
-						type
+			query() {
+				return gql`
+					query getTransactions(
+						$startDate: String
+						$endDate: String
+						$search: String
+					) {
+						transactions(
+							startDate: $startDate
+							endDate: $endDate
+							search: $search
+						) {
+							amount
+							currency
+							description
+							id
+							registerDate
+							title
+							type
+						}
 					}
-				}
-			`,
+				`;
+			},
 			variables() {
 				return {
 					endDate: this.formattedDate,
+					search: this.search,
 					startDate: this.formattedDate,
 				};
 			},
@@ -102,8 +114,5 @@ export default {
 	display: grid;
 	padding: var(--largeSpacing);
 	grid-gap: var(--largeSpacing);
-}
-.wrapper {
-	color: var(--secondaryPrimary);
 }
 </style>
