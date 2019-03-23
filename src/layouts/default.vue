@@ -1,7 +1,7 @@
 <template>
-  <section class="layout-container">
+  <main class="layout-container">
     <nuxt-child/>
-  </section>
+  </main>
 </template>
 
 <script>
