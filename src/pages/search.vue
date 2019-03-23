@@ -1,5 +1,5 @@
 <template>
-  <section class="search-wrapper">
+  <app-page-wrapper>
     <input
       aria-label="Search transactions by title or description and press enter"
       class="search-input"
@@ -9,10 +9,12 @@
       @keyup.enter="onSearch(false)"
       @keyup.esc="onSearch(true)"
     >
-  </section>
+  </app-page-wrapper>
 </template>
 
 <script>
+import appPageWrapper from '@/components/app-page-wrapper.vue';
+
 function mounted() {
 	this.$refs.search.focus();
 }
@@ -24,6 +26,9 @@ function onSearch(esc) {
 
 export default {
 	name: 'pages-search',
+	components: {
+		appPageWrapper,
+	},
 	mounted,
 	methods: {
 		onSearch,
@@ -32,12 +37,6 @@ export default {
 </script>
 
 <style scoped>
-.search-wrapper {
-	background-color: var(--colorPrimary);
-	padding: var(--smallSpacing);
-	height: 100vh;
-}
-
 .search-input {
 	background-color: var(--colorPrimary);
 	border: none;

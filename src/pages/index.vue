@@ -19,11 +19,11 @@ function data() {
 	return {
 		items: [
 			{
-				alt: 'Dashboard',
+				alt: 'Sidebar',
 				id: 1,
 				icon: '/ham.svg',
 				name: '',
-				url: '/',
+				url: '/sidebar',
 			},
 			{
 				alt: 'Transactions',
