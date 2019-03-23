@@ -19,18 +19,21 @@ function data() {
 	return {
 		items: [
 			{
+				alt: 'Dashboard',
 				id: 1,
 				icon: '/ham.svg',
 				name: '',
 				url: '/admin/dashboard',
 			},
 			{
+				alt: 'Transactions',
 				id: 2,
 				icon: '',
 				url: '/admin/dashboard',
 				name: 'Transactions',
 			},
 			{
+				alt: 'Search',
 				id: 3,
 				icon: '/search.svg',
 				url: '/admin/search',
