@@ -3,7 +3,7 @@
     <img alt="Ingreso" :src="typeProps.icon" height="32" width="32">
     <section class="transaction-text-wrapper">
       <app-text tag-name="p" :title="title">{{ title }}</app-text>
-      <app-text tag-name="p" :styles="['small']" :title="date">{{ formatDate }}</app-text>
+      <app-text tag-name="p" :styles="['small']" :title="registerDate">{{ formatDate }}</app-text>
     </section>
     <section class="transaction-number-wrapper">
       <app-text
@@ -26,7 +26,9 @@ function formatDate() {
 		minute: '2-digit',
 		month: 'short',
 	};
-	return new Intl.DateTimeFormat('es-prl', locales).format(this.date);
+	return new Intl.DateTimeFormat('es-prl', locales).format(
+		new Date(Number(this.registerDate)),
+	);
 }
 
 function formatNumber(value, currency) {
@@ -42,7 +44,7 @@ function limitText(value, limit = 14) {
 }
 
 function typeProps() {
-	const isIncome = this.type === 1;
+	const isIncome = this.type === 'INCOME';
 	const result = {
 		icon: isIncome ? 'up-arrow.svg' : 'down-arrow.svg',
 		color: isIncome ? '#68ac8d' : '#ff0000',
@@ -69,15 +71,14 @@ export default {
 			type: Number,
 		},
 		categoryName: {
-			required: true,
 			type: String,
 		},
 		currency: {
 			type: String,
 		},
-		date: {
+		registerDate: {
 			required: true,
-			type: Date,
+			type: String,
 		},
 		title: {
 			required: true,
@@ -85,7 +86,7 @@ export default {
 		},
 		type: {
 			required: true,
-			type: Number,
+			type: String,
 		},
 	},
 };

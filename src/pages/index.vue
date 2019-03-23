@@ -3,14 +3,13 @@
     <app-nav-bar :items="items"/>
     <inline-dates :active-date="today" @active-date="activeDate"/>
     <section class="transactions-wrapper">
-      <transaction-item v-bind="transactions[0]"/>
-      <transaction-item v-bind="transactions[1]"/>
-      <transaction-item v-bind="transactions[2]"/>
+      <transaction-item v-for="tx in transactions" :key="tx.id" v-bind="tx"></transaction-item>
     </section>
   </section>
 </template>
 
 <script>
+import gql from 'graphql-tag';
 import appNavBar from '@/components/app-nav-bar.vue';
 import appText from '@/components/app-text.vue';
 import inlineDates from '@/components/inline-dates.vue';
@@ -18,35 +17,6 @@ import transactionItem from '@/components/transactions/transaction-item.vue';
 
 function data() {
 	return {
-		transactions: [
-			{
-				amount: Math.random() * 1000,
-				categoryName: 'Work',
-				currency: 'PEN',
-				date: new Date(),
-				id: 1,
-				title: 'Freelance Work',
-				type: 1,
-			},
-			{
-				amount: Math.random() * 1000,
-				categoryName: 'Studies',
-				currency: 'PEN',
-				date: new Date(2019, 2, 20, 20, 15, 20),
-				id: 2,
-				title: 'Books',
-				type: 2,
-			},
-			{
-				amount: Math.random() * 1000,
-				categoryName: 'Hardware',
-				currency: 'PEN',
-				date: new Date(2019, 4, 20, 20, 15, 20),
-				id: 3,
-				title: 'CPU Intel Processor',
-				type: 2,
-			},
-		],
 		items: [
 			{
 				id: 1,
@@ -75,13 +45,47 @@ function activeDate({ date }) {
 	this.today = new Date(date);
 }
 
+function formattedDate() {
+	const today = this.today;
+	const year = today.getFullYear();
+	const month = Number(today.getMonth()) + 1;
+	const day = today.getDate();
+	return `${year}-${month}-${day}`;
+}
+
 export default {
 	name: 'pages-home',
+	apollo: {
+		transactions: {
+			query: gql`
+				query getTransactions($startDate: String!, $endDate: String!) {
+					transactions(startDate: $startDate, endDate: $endDate) {
+						amount
+						currency
+						description
+						id
+						registerDate
+						title
+						type
+					}
+				}
+			`,
+			variables() {
+				return {
+					endDate: this.formattedDate,
+					startDate: this.formattedDate,
+				};
+			},
+		},
+	},
 	components: {
 		appNavBar,
 		appText,
 		inlineDates,
 		transactionItem,
+	},
+	computed: {
+		formattedDate,
 	},
 	data,
 	methods: {

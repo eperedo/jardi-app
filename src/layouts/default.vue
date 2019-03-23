@@ -13,6 +13,5 @@ export default {
 <style scoped>
 .layout-container {
 	background-color: var(--colorPrimary);
-	height: 100vh;
 }
 </style>

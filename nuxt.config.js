@@ -5,6 +5,20 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const config = {
+	apollo: {
+		clientConfigs: {
+			default: {
+				httpEndpoint: process.env.JARDI_API || 'http://localhost:3000',
+			},
+		},
+		errorHandler(error) {
+			console.log(
+				'%cError',
+				'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;',
+				error.message,
+			);
+		},
+	},
 	generate: {
 		dir: './../dist',
 	},
@@ -29,7 +43,7 @@ const config = {
 		lang: 'en',
 	},
 	mode: 'spa',
-	modules: ['@nuxtjs/pwa'],
+	modules: ['@nuxtjs/pwa', '@nuxtjs/apollo'],
 	rootDir: './src',
 	workbox: {
 		runtimeCaching: [
