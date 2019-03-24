@@ -100,10 +100,10 @@ function data() {
 			},
 		],
 		model: {
-			amount: Math.random() * 100,
+			amount: 1,
 			currency: 'PEN',
 			description: '',
-			title: `Title ${Math.random()} * 100`,
+			title: '',
 			registerDate: formatDate(),
 			type: 'INCOME',
 		},
