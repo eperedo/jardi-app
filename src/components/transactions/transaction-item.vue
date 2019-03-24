@@ -47,7 +47,7 @@ function typeProps() {
 	const isIncome = this.type === 'INCOME';
 	const result = {
 		icon: isIncome ? 'up-arrow.svg' : 'down-arrow.svg',
-		color: isIncome ? '#68ac8d' : '#ff0000',
+		color: isIncome ? '#68ac8d' : '#FF9999',
 	};
 	return result;
 }

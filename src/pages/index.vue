@@ -3,17 +3,19 @@
     <app-nav-bar :items="items"/>
     <inline-dates :active-date="today" @active-date="activeDate"/>
     <section class="transactions-wrapper">
+      <div style="color:#fff" v-if="$apollo.loading">Loading...</div>
       <transaction-item v-for="tx in transactions" :key="tx.id" v-bind="tx"></transaction-item>
     </section>
   </section>
 </template>
 
 <script>
-import gql from 'graphql-tag';
+import listTransactions from '@/graphql/list-transactions.gql';
 import appNavBar from '@/components/app-nav-bar.vue';
 import appText from '@/components/app-text.vue';
 import inlineDates from '@/components/inline-dates.vue';
 import transactionItem from '@/components/transactions/transaction-item.vue';
+import { formatDate } from '@/utils/helper';
 
 function data() {
 	return {
@@ -50,40 +52,14 @@ function activeDate({ date }) {
 }
 
 function formattedDate() {
-	const today = this.today;
-	const year = today.getFullYear();
-	const month = Number(today.getMonth()) + 1;
-	const day = today.getDate();
-	return `${year}-${month}-${day}`;
+	return formatDate(this.today);
 }
 
 export default {
 	name: 'pages-home',
 	apollo: {
 		transactions: {
-			query() {
-				return gql`
-					query getTransactions(
-						$startDate: String
-						$endDate: String
-						$search: String
-					) {
-						transactions(
-							startDate: $startDate
-							endDate: $endDate
-							search: $search
-						) {
-							amount
-							currency
-							description
-							id
-							registerDate
-							title
-							type
-						}
-					}
-				`;
-			},
+			query: listTransactions,
 			variables() {
 				return {
 					endDate: this.formattedDate,

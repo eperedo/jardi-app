@@ -1,0 +1,11 @@
+query GET_TRANSACTION($startDate: String, $endDate: String, $search: String) {
+					transactions(startDate: $startDate, endDate: $endDate, search: $search) {
+						amount
+						currency
+						description
+						id
+						registerDate
+						title
+						type
+					}
+				}

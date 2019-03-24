@@ -1,0 +1,18 @@
+mutation ($amount: Float!, $description: String, $title: String!, $registerDate: String!, $type: TransactionType!, $currency: String!) {
+  createTransaction(
+    amount: $amount
+    currency: $currency
+    description: $description,
+    title: $title
+    registerDate: $registerDate
+    type: $type
+  ) {
+    amount
+    currency
+    description
+    id
+    registerDate
+    title
+    type
+  }
+}
