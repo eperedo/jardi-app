@@ -70,7 +70,6 @@
 
 <script>
 import appNavBar from '@/components/app-nav-bar.vue';
-// import newTransaction from '@/graphql/new-transaction.gql';
 import listTransactions from '@/graphql/list-transactions.gql';
 import { formatDate } from '@/utils/helper';
 
