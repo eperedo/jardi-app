@@ -19,6 +19,9 @@ const config = {
 			);
 		},
 	},
+	env: {
+		NETLIFY_IDENTITY_URL: process.env.NETLIFY_IDENTITY_URL || '',
+	},
 	generate: {
 		dir: './../dist',
 	},
@@ -44,6 +47,7 @@ const config = {
 	},
 	mode: 'spa',
 	modules: ['@nuxtjs/pwa', '@nuxtjs/apollo'],
+	plugins: ['~/plugins/identity.js'],
 	rootDir: './src',
 	workbox: {
 		runtimeCaching: [

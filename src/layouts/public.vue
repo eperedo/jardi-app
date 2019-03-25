@@ -6,8 +6,7 @@
 
 <script>
 export default {
-	name: 'layouts-default',
-	middleware: 'identity',
+	name: 'layouts-public',
 };
 </script>
 
