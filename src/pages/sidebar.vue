@@ -10,6 +10,9 @@
       <li class="sidebar-link">
         <nuxt-link class="link" to="/transactions/new">New Transaction</nuxt-link>
       </li>
+      <li class="sidebar-link">
+        <nuxt-link class="link" to="/sign-out">Sign Out</nuxt-link>
+      </li>
     </ul>
   </app-page-wrapper>
 </template>

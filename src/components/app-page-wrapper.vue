@@ -13,6 +13,7 @@ export default {
 <style scoped>
 .page-wrapper {
 	background-color: var(--colorPrimary);
+	color: var(--colorSecondary);
 	padding: var(--smallSpacing);
 	height: 100vh;
 }
