@@ -1,0 +1,7 @@
+query {
+	balance {
+		balance
+		income
+		expense
+	}
+}

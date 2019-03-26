@@ -1,6 +1,5 @@
 <template>
   <div>
-    <app-nav-bar :items="items"/>
     <ApolloMutation
       :mutation="require('@/graphql/new-transaction.gql')"
       :optimistic-response="optimisticResponse"
@@ -75,29 +74,6 @@ import { formatDate } from '@/utils/helper';
 
 function data() {
 	return {
-		items: [
-			{
-				alt: 'Sidebar',
-				id: 1,
-				icon: '/ham.svg',
-				name: '',
-				url: '/sidebar',
-			},
-			{
-				alt: 'Transactions',
-				id: 2,
-				icon: '',
-				url: '/',
-				name: 'Transactions',
-			},
-			{
-				alt: 'Search',
-				id: 3,
-				icon: '/search.svg',
-				url: '/search',
-				name: '',
-			},
-		],
 		model: {
 			amount: 1,
 			currency: 'PEN',

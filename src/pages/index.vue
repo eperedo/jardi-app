@@ -1,6 +1,5 @@
 <template>
   <section class="wrapper">
-    <app-nav-bar :items="items"/>
     <inline-dates :active-date="today" @active-date="activeDate"/>
     <section class="transactions-wrapper">
       <div style="color:#fff" v-if="$apollo.loading">Loading...</div>
@@ -19,29 +18,6 @@ import { formatDate } from '@/utils/helper';
 
 function data() {
 	return {
-		items: [
-			{
-				alt: 'Sidebar',
-				id: 1,
-				icon: '/ham.svg',
-				name: '',
-				url: '/sidebar',
-			},
-			{
-				alt: 'Transactions',
-				id: 2,
-				icon: '',
-				url: '/',
-				name: 'Transactions',
-			},
-			{
-				alt: 'Search',
-				id: 3,
-				icon: '/search.svg',
-				url: '/search',
-				name: '',
-			},
-		],
 		search: this.$route.query.search,
 		today: new Date(),
 	};

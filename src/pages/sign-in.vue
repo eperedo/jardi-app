@@ -41,7 +41,7 @@ async function beforeCreate() {
 }
 
 function onSuccess() {
-	this.$router.push({ name: 'index' });
+	this.$router.push({ name: 'dashboard' });
 }
 
 export default {

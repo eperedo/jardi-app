@@ -14,7 +14,7 @@ function data() {
 }
 
 function onSuccess() {
-	this.$router.push({ name: 'index' });
+	this.$router.push({ name: 'sign-in' });
 }
 
 export default {
