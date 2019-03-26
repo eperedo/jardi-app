@@ -1,33 +1,32 @@
 <template>
-  <form @submit.prevent="process">
-    <div class="form-input-container">
-      <label class="form-label" for="email">Email</label>
-      <input
-        class="form-control form-input"
-        id="email"
-        required
-        type="email"
-        ref="email"
-        v-model="model.email"
-      >
-    </div>
-    <div class="form-input-container">
-      <label class="form-label" for="password">Password</label>
-      <input
-        class="form-control form-input"
-        id="password"
-        required
-        type="password"
-        v-model="model.password"
-      >
-    </div>
-    <div class="form-input-container">
-      <button class="btn" type="submit">{{ info.buttonText }}</button>
-    </div>
-  </form>
+  <app-form-container @submit.prevent="process">
+    <app-form-input
+      id="email"
+      required
+      type="email"
+      ref="email"
+      label="Email"
+      v-model="model.email"
+    ></app-form-input>
+    <app-form-input
+      id="password"
+      label="Password"
+      required
+      type="password"
+      v-model="model.password"
+    ></app-form-input>
+    <app-form-input-container>
+      <app-button class="btn" type="submit" :disabled="isLoading">{{ info.buttonText }}</app-button>
+    </app-form-input-container>
+  </app-form-container>
 </template>
 
 <script>
+import appButton from '@/components/app-button.vue';
+import appFormContainer from '@/components/containers/app-form-container.vue';
+import appFormInput from '@/components/app-form-input.vue';
+import appFormInputContainer from '@/components/app-form-input-container.vue';
+
 const processSettings = {
 	SIGN_IN: {
 		buttonText: 'Sign In',
@@ -42,6 +41,7 @@ const processSettings = {
 
 function data() {
 	return {
+		isLoading: false,
 		model: {
 			email: '',
 			password: '',
@@ -54,6 +54,8 @@ function info() {
 }
 
 async function process() {
+	window.localStorage.clear();
+	this.isLoading = true;
 	try {
 		const response = await this.$identity[this.info.methodName](
 			this.model.email,
@@ -63,11 +65,18 @@ async function process() {
 		this.$emit('on-success', response);
 	} catch (error) {
 		this.$emit('on-error', error);
+		this.isLoading = false;
 	}
 }
 
 export default {
 	name: 'pages-sign-in',
+	components: {
+		appButton,
+		appFormContainer,
+		appFormInput,
+		appFormInputContainer,
+	},
 	computed: {
 		info,
 	},
@@ -83,34 +92,3 @@ export default {
 	},
 };
 </script>
-
-<style scoped>
-.btn {
-	background-color: var(--colorSuccess);
-	color: var(--colorSecondary);
-	font-size: var(--mediumFont);
-	font-weight: bold;
-	padding: var(--mediumSpacing);
-}
-
-.form {
-	color: var(--colorSecondary);
-}
-
-.form-control {
-	background-color: var(--colorSecondary);
-	font-size: var(--mediumFont);
-	padding: var(--mediumSpacing);
-}
-
-.form-input-container {
-	display: flex;
-	flex-direction: column;
-	padding: var(--mediumSpacing);
-}
-
-.form-label {
-	font-size: var(--mediumFont);
-	margin-bottom: var(--smallSpacing);
-}
-</style>
