@@ -28,6 +28,10 @@ export default {
 	color: var(--colorSecondary);
 }
 
+.app-text-light {
+	color: var(--colorPrimary);
+}
+
 .center {
 	text-align: center;
 }

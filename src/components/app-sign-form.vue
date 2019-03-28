@@ -1,5 +1,6 @@
 <template>
   <app-form-container @submit.prevent="process">
+    <app-text tag-name="h1" :styles="['title', 'center']">{{ info.buttonText }}</app-text>
     <app-form-input
       id="email"
       required
@@ -26,6 +27,7 @@ import appButton from '@/components/app-button.vue';
 import appFormContainer from '@/components/containers/app-form-container.vue';
 import appFormInput from '@/components/app-form-input.vue';
 import appFormInputContainer from '@/components/app-form-input-container.vue';
+import appText from '@/components/app-text.vue';
 
 const processSettings = {
 	SIGN_IN: {
@@ -76,6 +78,7 @@ export default {
 		appFormContainer,
 		appFormInput,
 		appFormInputContainer,
+		appText,
 	},
 	computed: {
 		info,
