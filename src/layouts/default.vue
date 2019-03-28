@@ -24,7 +24,7 @@ export default {
 					alt: 'Transactions',
 					id: 2,
 					icon: '',
-					url: '/',
+					url: '/transactions',
 					name: 'Transactions',
 				},
 				{

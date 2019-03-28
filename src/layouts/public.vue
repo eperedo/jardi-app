@@ -3,7 +3,7 @@
     <nav>
       <ul class="nav-container">
         <li class="nav-link">
-          <nuxt-link class="link" to="/landing">Jardi</nuxt-link>
+          <nuxt-link class="link" to="/">Jardi</nuxt-link>
         </li>
         <li class="nav-link">
           <nuxt-link class="link" to="/sign-in">Sign In</nuxt-link>

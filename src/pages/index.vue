@@ -1,70 +1,90 @@
 <template>
-  <section class="wrapper">
-    <inline-dates :active-date="today" @active-date="activeDate"/>
-    <section class="transactions-wrapper">
-      <div style="color:#fff" v-if="$apollo.loading">Loading...</div>
-      <transaction-item v-for="tx in transactions" :key="tx.id" v-bind="tx"></transaction-item>
+  <section>
+    <section class="landing-section-container">
+      <app-text tag-name="h1" :styles="['title']">Jardi - your lovely money saving pal!</app-text>
+      <picture>
+        <img
+          src="/landing-1.svg"
+          width="300"
+          height="300"
+          alt="Jardi - your lovely money saving pal!"
+        >
+      </picture>
+    </section>
+    <section class="landing-section-container">
+      <app-text tag-name="h2" :styles="['title']">Keep track of your daily spend or income!</app-text>
+      <picture>
+        <img
+          src="/landing-2.svg"
+          width="300"
+          height="300"
+          alt="Keep track of your daily spend or income!"
+        >
+      </picture>
+    </section>
+    <section class="landing-section-container">
+      <app-text tag-name="h2" :styles="['title']">See your current balance whenever you want!</app-text>
+      <picture>
+        <img
+          src="/landing-3.svg"
+          width="300"
+          height="300"
+          alt="See your current balance whenever you want!"
+        >
+      </picture>
+    </section>
+    <section class="landing-section-container">
+      <app-text tag-name="h2" :styles="['title']">Easy access from your phone!</app-text>
+      <picture>
+        <img src="/landing-4.svg" width="300" height="300" alt="Easy access from your phone!">
+      </picture>
+    </section>
+    <section class="landing-section-container white">
+      <footer>
+        <app-text :styles="['small', 'app-text-light']">{{ year }} - All rights and lefts reserved</app-text>
+        <app-text :styles="['small', 'app-text-light']">
+          Made with
+          <span aria-label="code, love">👨🏼‍💻</span> and a lot of free time by
+          <a
+            title="code"
+            href="https://blog.eperedo.com"
+            target="_blank"
+            rel="noopener"
+          >Eduardo P. Rivero</a>
+        </app-text>
+      </footer>
     </section>
   </section>
 </template>
 
 <script>
-import listTransactions from '@/graphql/list-transactions.gql';
-import appNavBar from '@/components/app-nav-bar.vue';
 import appText from '@/components/app-text.vue';
-import inlineDates from '@/components/inline-dates.vue';
-import transactionItem from '@/components/transactions/transaction-item.vue';
-import { formatDate } from '@/utils/helper';
 
 function data() {
 	return {
-		search: this.$route.query.search,
-		today: new Date(),
+		year: new Date().getFullYear(),
 	};
 }
 
-function activeDate({ date }) {
-	this.today = new Date(date);
-}
-
-function formattedDate() {
-	return formatDate(this.today);
-}
-
 export default {
-	name: 'pages-home',
-	apollo: {
-		transactions: {
-			query: listTransactions,
-			variables() {
-				return {
-					endDate: this.formattedDate,
-					search: this.search,
-					startDate: this.formattedDate,
-				};
-			},
-		},
-	},
+	name: 'pages-landing',
 	components: {
-		appNavBar,
 		appText,
-		inlineDates,
-		transactionItem,
-	},
-	computed: {
-		formattedDate,
 	},
 	data,
-	methods: {
-		activeDate,
-	},
+	layout: 'public',
 };
 </script>
 
 <style scoped>
-.transactions-wrapper {
-	display: grid;
+.landing-section-container {
+	display: flex;
+	flex-direction: column;
 	padding: var(--largeSpacing);
-	grid-gap: var(--largeSpacing);
+	text-align: center;
+}
+
+.landing-section-container.white {
+	background-color: var(--colorSecondary);
 }
 </style>

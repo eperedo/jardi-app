@@ -91,7 +91,7 @@ function mounted() {
 }
 
 function onDone($event) {
-	this.$router.push({ name: 'index' });
+	this.$router.push({ name: 'transactions' });
 }
 
 function update(store, context) {

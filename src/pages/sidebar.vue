@@ -5,7 +5,7 @@
         <nuxt-link class="link" to="/dashboard">Dashboard</nuxt-link>
       </li>
       <li class="sidebar-link">
-        <nuxt-link class="link" to="/">Transactions</nuxt-link>
+        <nuxt-link class="link" to="/transactions">Transactions</nuxt-link>
       </li>
       <li class="sidebar-link">
         <nuxt-link class="link" to="/transactions/new">New Transaction</nuxt-link>
