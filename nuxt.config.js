@@ -11,13 +11,6 @@ const config = {
 				httpEndpoint: process.env.JARDI_API || 'http://localhost:3000',
 			},
 		},
-		errorHandler(error) {
-			console.log(
-				'%cError',
-				'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;',
-				error.message,
-			);
-		},
 	},
 	env: {
 		NETLIFY_IDENTITY_URL: process.env.NETLIFY_IDENTITY_URL || '',
@@ -36,7 +29,7 @@ const config = {
 				content: 'Less worry more saving',
 			},
 		],
-		link: [{ rel: 'icon', type: 'image/x-icon', href: 'favicon.ico' }],
+		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
 	icon: {
 		iconSrc: './src/assets/eperedo.png',
